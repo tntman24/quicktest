@@ -1,73 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <script>
-(function(){
-  try {
-    // === CONFIGURE THIS ===
-    const requiredParam = "key";             // parameter name to require
-    const allowedValues = ["monkeygg2"];     // allowed values (lowercase matches below)
-    const redirectUrl = "https://google.com";// where to send if check fails
-    // ======================
-
-    // Debug mode (set false to silence logs)
-    const DEBUG = true;
-
-    function log(...args){ if(DEBUG) console.log("[param-check]", ...args); }
-
-    // Read the full href (works with file:// and http(s) too)
-    const href = window.location.href || "";
-    log("current href:", href);
-
-    // Parse search params robustly
-    let search = "";
-    try {
-      search = (new URL(href)).search;
-    } catch(e) {
-      // fallback if URL() fails for some reason
-      const q = href.indexOf("?");
-      search = q === -1 ? "" : href.slice(q);
-    }
-
-    const params = new URLSearchParams(search);
-    let val = params.get(requiredParam);
-
-    // Normalise value for comparison
-    val = (val || "").toString().trim().toLowerCase();
-    const allowedLower = allowedValues.map(v => String(v).toLowerCase());
-
-    log(`required param '${requiredParam}' =>`, val);
-    log("allowed values:", allowedLower);
-
-    const ok = val && allowedLower.includes(val);
-
-    if (!ok) {
-      log("Parameter check failed. Redirecting to:", redirectUrl);
-
-      // If page is inside an iframe, attempt to redirect the top window.
-      try {
-        if (window.top && window.top !== window.self) {
-          // use replace so it doesn't create history entry
-          window.top.location.replace(redirectUrl);
-        } else {
-          window.location.replace(redirectUrl);
-        }
-      } catch (err) {
-        // If cross-origin prevents top redirect, fall back to normal redirect
-        log("Redirect to top blocked:", err);
-        window.location.replace(redirectUrl);
-      }
-    } else {
-      log("Parameter check passed. Page will continue loading.");
-    }
-  } catch (err) {
-    // If anything crashes, log and do a safe redirect
-    console.error("[param-check] unexpected error:", err);
-    try { window.location.replace("https://google.com"); } catch(e){}
-  }
-})();
-</script>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5937MNQKK5"></script>
   <script>
@@ -77,7 +10,7 @@
 
     gtag('config', 'G-5937MNQKK5');
 </script>
-  
+  </head>
 
   <title>MonkeyGG2</title>
   <meta name="description" content="Cool site for stuff" />
