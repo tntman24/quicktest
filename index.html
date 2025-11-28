@@ -10,6 +10,21 @@
 
     gtag('config', 'G-5937MNQKK5');
   </script>
+  <script>
+  // === CUSTOMIZE THIS ===
+  const requiredParam = "key";          // name of the parameter
+  const allowedValues = ["workingpassword"];  // allowed values (can add more)
+  // =======================
+
+  const url = new URL(window.location.href);
+  const value = url.searchParams.get(requiredParam);
+
+  // If missing or invalid, redirect to Google
+  if (!value || !allowedValues.includes(value)) {
+    window.location.href = "https://google.com";
+  }
+</script>
+
   <title>MonkeyGG2</title>
   <meta name="description" content="Cool site for stuff" />
   <meta name="keywords"
